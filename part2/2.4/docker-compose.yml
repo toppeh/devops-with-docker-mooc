@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: front:1.14
+    ports: 
+      - 80:5000
+
+  backend:
+    image: backend:1.14
+    ports:
+      - 8080:8080
+    environment:
+      - REDIS_HOST=redis-kontti
+
+  redis:
+    image: redis:bullseye
+    restart: unless-stopped
+    container_name: redis-kontti
